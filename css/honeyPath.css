@@ -1,0 +1,401 @@
+/* Honey Path Game Styles */
+.honey-path-game {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.game-header h2 {
+    font-size: 2.5rem;
+    color: #8B4513;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Level Selection Menu */
+.levels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.level-card {
+    background: linear-gradient(135deg, #FFE4B5 0%, #DEB887 100%);
+    border-radius: 15px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.level-card.unlocked {
+    border-color: #8B4513;
+}
+
+.level-card.locked {
+    background: linear-gradient(135deg, #CCCCCC 0%, #999999 100%);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.level-card.unlocked:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+    border-color: #A0522D;
+}
+
+.level-card.locked::after {
+    content: '🔒';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+}
+
+.level-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #8B4513;
+    margin-bottom: 0.5rem;
+}
+
+.level-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #5D4E37;
+    margin-bottom: 0.5rem;
+}
+
+.level-description {
+    color: #6B5B73;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.level-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #8B4513;
+    font-weight: 500;
+}
+
+/* Game Area */
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(255, 228, 181, 0.5);
+    border-radius: 10px;
+}
+
+.control-btn {
+    background: linear-gradient(135deg, #D2691E, #A0522D);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(210, 105, 30, 0.4);
+}
+
+.game-stats {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #8B4513;
+}
+
+.level-info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.level-info h3 {
+    color: #8B4513;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.level-info p {
+    color: #6B5B73;
+    font-style: italic;
+}
+
+/* Game Grid */
+.game-grid {
+    display: grid;
+    gap: 2px;
+    background: #8B4513;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 2rem auto;
+    max-width: 400px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.grid-cell {
+    aspect-ratio: 1;
+    background: #F5DEB3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.grid-cell.bear-cell {
+    background: linear-gradient(135deg, #98FB98, #90EE90);
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.grid-cell.honey-cell {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    animation: honeyGlow 2s infinite;
+}
+
+@keyframes honeyGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+}
+
+.grid-cell.obstacle-cell {
+    background: linear-gradient(135deg, #228B22, #32CD32);
+}
+
+.bear, .honey, .obstacle {
+    transition: all 0.3s ease;
+}
+
+.bear {
+    animation: bearBounce 1s infinite;
+}
+
+@keyframes bearBounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+/* Movement Controls */
+.movement-controls {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.arrow-keys {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.arrow-btn {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #CD853F, #A0522D);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin: 2px;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.arrow-btn:hover {
+    background: linear-gradient(135deg, #D2691E, #8B4513);
+    transform: scale(1.1);
+}
+
+.arrow-btn:active {
+    transform: scale(0.95);
+}
+
+.middle-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.center-space {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 5px;
+}
+
+.controls-hint {
+    color: #8B4513;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Completion Screen */
+.game-completion {
+    text-align: center;
+    padding: 3rem;
+}
+
+.completion-content {
+    background: linear-gradient(135deg, #FFE4E1, #FFF8DC);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.completion-animation {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    animation: celebration 1s infinite;
+}
+
+@keyframes celebration {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.completion-content h2 {
+    color: #8B4513;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.completion-content p {
+    color: #6B5B73;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.memory-photo {
+    max-width: 300px;
+    border-radius: 15px;
+    margin: 1rem auto;
+    display: block;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.completion-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    background: linear-gradient(135deg, #32CD32, #228B22);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn.secondary {
+    background: linear-gradient(135deg, #D2691E, #A0522D);
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(50, 205, 50, 0.4);
+}
+
+.action-btn.secondary:hover {
+    box-shadow: 0 8px 20px rgba(210, 105, 30, 0.4);
+}
+
+/* Game Messages */
+.game-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-align: center;
+}
+
+.game-message.show {
+    opacity: 1;
+}
+
+.game-message.success {
+    background: linear-gradient(135deg, #90EE90, #98FB98);
+    color: #006400;
+}
+
+.game-message.warning {
+    background: linear-gradient(135deg, #FFE4B5, #DEB887);
+    color: #8B4513;
+}
+
+.game-message.error {
+    background: linear-gradient(135deg, #FFB6C1, #FFA0B4);
+    color: #8B0000;
+}
+
+.game-message.info {
+    background: linear-gradient(135deg, #E0E6FF, #C7D2FE);
+    color: #4338CA;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .honey-path-game {
+        padding: 1rem;
+    }
+    
+    .game-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .game-stats {
+        gap: 1rem;
+    }
+    
+    .grid-cell {
+        font-size: 1.5rem;
+    }
+    
+    .levels-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .completion-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+}

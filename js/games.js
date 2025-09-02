@@ -78,3 +78,5 @@ class LoveGames {
 
     // Add more game implementations...
 }
+
+const loveGames = new LoveGames();
