@@ -399,3 +399,181 @@
         align-items: center;
     }
 }
+
+/* Level Sections */
+.level-section {
+    margin-bottom: 3rem;
+}
+
+.level-section h4 {
+    font-size: 1.5rem;
+    color: #8B4513;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Generator Controls */
+.generator-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #FFF8DC, #F5DEB3);
+    border-radius: 15px;
+    border: 2px solid #DEB887;
+}
+
+.generator-controls label {
+    font-weight: 600;
+    color: #8B4513;
+    font-size: 1.1rem;
+}
+
+.difficulty-select {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: 2px solid #DEB887;
+    background: white;
+    color: #8B4513;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.difficulty-select:hover {
+    border-color: #CD853F;
+    box-shadow: 0 2px 8px rgba(139, 69, 19, 0.2);
+}
+
+.generate-btn {
+    background: linear-gradient(135deg, #32CD32, #228B22);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.generate-btn:hover {
+    background: linear-gradient(135deg, #228B22, #006400);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(50, 205, 50, 0.4);
+}
+
+/* Generate Placeholder */
+.generate-placeholder {
+    background: linear-gradient(135deg, #F0F8FF, #E6F3FF);
+    border: 3px dashed #87CEEB;
+    border-radius: 15px;
+    padding: 3rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.generate-placeholder:hover {
+    border-color: #4682B4;
+    background: linear-gradient(135deg, #E6F3FF, #D6E8FF);
+}
+
+.placeholder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.placeholder-icon {
+    font-size: 4rem;
+    animation: placeholderPulse 2s infinite;
+}
+
+@keyframes placeholderPulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+.placeholder-text {
+    font-size: 1.2rem;
+    color: #4682B4;
+    font-weight: 600;
+}
+
+/* Generated Level Cards */
+.generated-level {
+    position: relative;
+}
+
+.generated-level::before {
+    content: '🎲';
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+.level-stats .size-indicator {
+    background: rgba(139, 69, 19, 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Level Type Indicator */
+.level-type-indicator {
+    text-align: center;
+    background: linear-gradient(135deg, #E6F3FF, #D6E8FF);
+    color: #4682B4;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    border: 1px solid #87CEEB;
+}
+
+/* Completion Screen Updates */
+#generate-new {
+    background: linear-gradient(135deg, #FF6B6B, #FF5252);
+}
+
+#generate-new:hover {
+    background: linear-gradient(135deg, #FF5252, #FF1744);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* Responsive Updates */
+@media (max-width: 768px) {
+    .generator-controls {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .level-section h4 {
+        font-size: 1.3rem;
+    }
+    
+    .generator-controls label {
+        font-size: 1rem;
+    }
+    
+    .generate-placeholder {
+        padding: 2rem;
+    }
+    
+    .placeholder-icon {
+        font-size: 3rem;
+    }
+    
+    .placeholder-text {
+        font-size: 1rem;
+    }
+}
