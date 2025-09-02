@@ -1,5 +1,9 @@
+console.log('Timeline.js is loading...');
+
 class Timeline {
     constructor() {
+        console.log('Timeline constructor running...');
+        console.log('COntainer element', document.getElementById('timeline-container'));
         this.container = document.getElementById('timeline-container');
         this.init();
     }
@@ -106,3 +110,6 @@ class Timeline {
         });
     }
 }
+
+console.log('About to create timeline...');
+const timeline = new Timeline();
