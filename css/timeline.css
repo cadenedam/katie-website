@@ -1,0 +1,340 @@
+/* Timeline Container */
+.timeline-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* The center line */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #667eea, #764ba2);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* Timeline items (each memory) */
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease;
+}
+
+/* Animation when scrolled into view */
+.timeline-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Left side items */
+.timeline-item.left {
+    padding-right: calc(50% + 2rem);
+}
+
+.timeline-item.left .timeline-content {
+    text-align: right;
+}
+
+/* Right side items */
+.timeline-item.right {
+    padding-left: calc(50% + 2rem);
+}
+
+.timeline-item.right .timeline-content {
+    text-align: left;
+}
+
+/* The dots on the timeline */
+.timeline-dot {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 4px solid #764ba2;
+    border-radius: 50%;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+    background: #764ba2;
+    transform: translateX(-50%) scale(1.2);
+}
+
+/* Memory date styling */
+.memory-date {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Main memory card */
+.memory-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    max-width: 500px;
+}
+
+.memory-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* Right-aligned cards */
+.timeline-item.right .memory-card {
+    margin-left: 0;
+}
+
+/* Left-aligned cards */
+.timeline-item.left .memory-card {
+    margin-left: auto;
+}
+
+/* THE KEY FIX: Image sizing */
+.memory-image {
+    width: 120px;           /* Fixed width */
+    height: 120px;          /* Fixed height */
+    object-fit: cover;      /* Crops image to fit without stretching */
+    border-radius: 10px;
+    flex-shrink: 0;         /* Prevents image from shrinking */
+    transition: all 0.3s ease;
+}
+
+.memory-image:hover {
+    transform: scale(1.05);
+    border-radius: 15px;
+}
+
+/* Memory text content */
+.memory-info {
+    flex: 1;                /* Takes up remaining space */
+    min-width: 0;           /* Allows text to wrap properly */
+}
+
+.memory-title {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.memory-description {
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.memory-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.memory-location i {
+    color: #764ba2;
+}
+
+/* Memory details button */
+.memory-details-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.memory-details-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+}
+
+/* Modal styling */
+.memory-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #999;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+/* Modal image sizing */
+.modal-content img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+}
+
+.modal-content h2 {
+    color: #764ba2;
+    margin-bottom: 0.5rem;
+}
+
+.modal-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.modal-details {
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+.modal-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-style: italic;
+}
+
+.modal-location i {
+    color: #764ba2;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 30px;
+    }
+    
+    .timeline-item.left,
+    .timeline-item.right {
+        padding-left: 80px;
+        padding-right: 1rem;
+    }
+    
+    .timeline-item.left .timeline-content,
+    .timeline-item.right .timeline-content {
+        text-align: left;
+    }
+    
+    .timeline-item.left .memory-card,
+    .timeline-item.right .memory-card {
+        margin-left: 0;
+        max-width: 100%;
+    }
+    
+    .timeline-dot {
+        left: 30px;
+    }
+    
+    /* Stack image and text on mobile */
+    .memory-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .memory-image {
+        width: 100%;
+        height: 200px;
+        align-self: center;
+    }
+    
+    .modal-content {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .memory-image {
+        height: 150px;
+    }
+    
+    .memory-card {
+        padding: 1rem;
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+    }
+    
+    .modal-content img {
+        max-height: 200px;
+    }
+}
