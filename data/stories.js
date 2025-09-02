@@ -1,21 +1,70 @@
-const adventureStories = {
-    start: {
-        text: "It's date night! Even though we're apart, we can still have an amazing time together. What sounds perfect right now?",
-        image: "images/dates/start.jpg",
-        choices: [
-            { text: "Something cozy and relaxing", next: "cozy" },
-            { text: "An adventure from home", next: "adventure" },
-            { text: "Something creative together", next: "creative" }
+const dateQuestions = [
+    {
+        id: "start",
+        text: "Do you want to go out or stay in?",
+        options: [
+            { text: "Go Out", value: "out" },
+            { text: "Stay In", value: "in" }
         ]
     },
-    cozy: {
-        text: "Perfect choice! Let's create the ultimate cozy date. I'm lighting a candle on my end - you should too!",
-        image: "images/dates/cozy.jpg",
-        choices: [
-            { text: "Let's cook the same meal together", next: "cooking" },
-            { text: "Movie night with synchronized start", next: "movie" },
-            { text: "Read to each other", next: "reading" }
+    {
+        id: "out_activity",
+        text: "What kind of outing do you want?",
+        dependsOn: { questionId: "start", value: "out" },
+        options: [
+            { text: "Restaurant/Drink", value: "drink" },
+            { text: "Fun Activity", value: "activity" },
+            { text: "Explore/Walk", value: "explore" }
         ]
-    }
-    // Add more story nodes...
-};
+    },
+    {
+        id: "stay_activity",
+        text: "What kind of cozy date do you want?",
+        dependsOn: { questionId: "start", value: "in" },
+        options: [
+            { text: "Watch TV", value: "movies" },
+            { text: "Cook together", value: "cook" },
+            { text: "Games", value: "games" }
+        ]
+    },
+    {
+        id: "drink_type",
+        text: "What kind of drinks?",
+        dependsOn: { questionId: "out_activity", value: "drink" },
+        options: [
+            { text: "Coffee", value: "coffee" },
+            { text: "Cocktails", value: "cocktails" },
+            { text: "Tea", value: "tea" }
+        ]
+    },
+    {
+        id: ,
+        text: ,
+        dependsOn: ,
+        options: []
+    },
+    {
+        id: ,
+        text: ,
+        dependsOn: ,
+        options: []
+    },
+    {
+        id: ,
+        text: ,
+        dependsOn: ,
+        options: []
+    },
+    {
+        id: ,
+        text: ,
+        dependsOn: ,
+        options: []
+    },
+    {
+        id: ,
+        text: ,
+        dependsOn: ,
+        options: []
+    },
+];

@@ -1,48 +1,9 @@
 class HoneyPathLevelGenerator {
     constructor() {
         this.themes = [
-            {
-                name: "Forest Adventure",
-                description: "Navigate through the enchanted forest to collect magical honey!",
-                completionMessage: "You've gathered all the forest honey! 🌲🍯",
-                memoryPhoto: "images/memories/forest.jpg"
-            },
-            {
-                name: "Garden Paradise",
-                description: "Help bear collect honey from the beautiful flower garden!",
-                completionMessage: "The garden is blooming with sweetness! 🌺🐝",
-                memoryPhoto: "images/memories/garden.jpg"
-            },
-            {
-                name: "Mountain Trail",
-                description: "Climb the mountain path to reach the honey treasures!",
-                completionMessage: "You've reached the summit of sweetness! 🏔️🍯",
-                memoryPhoto: "images/memories/mountain.jpg"
-            },
-            {
-                name: "Desert Oasis",
-                description: "Cross the desert to find hidden honey caches!",
-                completionMessage: "Sweet relief in the desert oasis! 🏜️💧",
-                memoryPhoto: "images/memories/desert.jpg"
-            },
-            {
-                name: "Beach Treasure Hunt",
-                description: "Search the sandy shores for buried honey treasures!",
-                completionMessage: "Treasure found by the sparkling waves! 🏖️⭐",
-                memoryPhoto: "images/memories/beach.jpg"
-            },
-            {
-                name: "City Exploration",
-                description: "Discover honey shops hidden throughout the bustling city!",
-                completionMessage: "Urban honey hunting complete! 🏙️🍯",
-                memoryPhoto: "images/memories/city.jpg"
-            },
-            {
-                name: "Snowy Village",
-                description: "Find warm honey treats in the cozy winter village!",
-                completionMessage: "Winter warmth found in every drop! ❄️🍯",
-                memoryPhoto: "images/memories/snow.jpg"
-            }
+            { name: "Forest Adventure", description: "Navigate the forest!", completionMessage: "Collected all forest honey!", memoryPhoto: "images/memories/forest.jpg" },
+            { name: "Garden Paradise", description: "Collect honey in the garden!", completionMessage: "Honey collected!", memoryPhoto: "images/memories/garden.jpg" },
+            { name: "Mountain Trail", description: "Reach the honey on the mountain!", completionMessage: "Summit honey!", memoryPhoto: "images/memories/mountain.jpg" }
         ];
     }
 
@@ -50,322 +11,107 @@ class HoneyPathLevelGenerator {
         const config = this.getDifficultyConfig(difficulty);
         const theme = this.themes[Math.floor(Math.random() * this.themes.length)];
         
-        let attempts = 0;
-        const maxAttempts = 50;
-        
-        while (attempts < maxAttempts) {
-            try {
-                const level = this.createLevel(id, config, theme);
-                if (this.validateLevel(level)) {
-                    return level;
-                }
-            } catch (error) {
-                console.log(`Attempt ${attempts + 1} failed:`, error.message);
-            }
-            attempts++;
-        }
-        
-        return this.createFallbackLevel(id, theme);
+        const { width, height, honeyCount, obstacleRatio, moveMultiplier } = config;
+
+        // 1️⃣ Place bear
+        const bear = { x: Math.floor(Math.random() * width), y: Math.floor(Math.random() * height) };
+
+        // 2️⃣ Generate honey positions and guaranteed path
+        const { honey, path } = this.generateHoneyAndPath(bear, width, height, honeyCount);
+
+        // 3️⃣ Place obstacles only outside the main path
+        const obstacles = this.generateObstacles(width, height, path, obstacleRatio);
+
+        const minMoves = path.length - 1;
+        const maxMoves = minMoves + 1;
+
+        return {
+            id,
+            name: theme.name,
+            description: theme.description,
+            size: { width, height },
+            maxMoves,
+            bear,
+            honey,
+            obstacles,
+            completionMessage: theme.completionMessage,
+            memoryPhoto: theme.memoryPhoto,
+            isGenerated: true
+        };
     }
 
     getDifficultyConfig(difficulty) {
-        const configs = {
-            easy: {
-                size: { width: 4, height: 4 },
-                honeyCount: { min: 2, max: 3 },
-                obstacleRatio: 0.1,
-                moveMultiplier: 1.8
-            },
-            medium: {
-                size: { width: 5, height: 5 },
-                honeyCount: { min: 3, max: 4 },
-                obstacleRatio: 0.15,
-                moveMultiplier: 1.5
-            },
-            hard: {
-                size: { width: 6, height: 6 },
-                honeyCount: { min: 4, max: 6 },
-                obstacleRatio: 0.2,
-                moveMultiplier: 1.3
-            }
+         const configs = {
+            easy: { width: 4, height: 4, honeyCount: 3, obstacleRatio: 0.1, moveMultiplier: 1.8 },
+            medium: { width: 5, height: 5, honeyCount: 4, obstacleRatio: 0.15, moveMultiplier: 1.5 },
+            hard: { width: 6, height: 6, honeyCount: 5, obstacleRatio: 0.2, moveMultiplier: 1.3 }
         };
         return configs[difficulty] || configs.medium;
     }
 
-    createLevel(id, config, theme) {
-        const { width, height } = config.size;
-        
-        const bear = {
-            x: Math.floor(Math.random() * width),
-            y: Math.floor(Math.random() * height)
-        };
-
-        const honeyCount = Math.floor(Math.random() * (config.honeyCount.max - config.honeyCount.min + 1)) + config.honeyCount.min;
-        const honey = this.generateReachableHoney(bear, config.size, honeyCount);
-
-        const optimalPath = this.findOptimalPath(bear, honey, config.size);
-        if (!optimalPath) {
-            throw new Error("Could not find path through all honey");
-        }
-
-        const minMoves = optimalPath.length - 1;
-        const maxMoves = Math.max(minMoves + 2, Math.ceil(minMoves * config.moveMultiplier));
-
-        const obstacles = this.generateNonBlockingObstacles(bear, honey, config.size, config.obstacleRatio, optimalPath);
-
-        return {
-            id: id,
-            name: theme.name,
-            description: theme.description,
-            size: config.size,
-            maxMoves: maxMoves,
-            bear: bear,
-            honey: honey,
-            obstacles: obstacles,
-            completionMessage: theme.completionMessage,
-            memoryPhoto: theme.memoryPhoto,
-            isGenerated: true
-        };
-    }
-
-    generateReachableHoney(bear, size, count) {
+    generateHoneyAndPath(bear, width, height, honeyCount) {
         const honey = [];
-        const used = new Set();
-        used.add(`${bear.x},${bear.y}`);
-
-        const candidates = [{ x: bear.x, y: bear.y }];
-        
-        while (honey.length < count && candidates.length > 0) {
-            const candidateIndex = Math.floor(Math.random() * candidates.length);
-            const current = candidates[candidateIndex];
-            
-            const adjacent = this.getAdjacentCells(current, size)
-                .filter(cell => !used.has(`${cell.x},${cell.y}`));
-            
-            if (adjacent.length > 0) {
-                const honeyPos = adjacent[Math.floor(Math.random() * adjacent.length)];
-                honey.push(honeyPos);
-                used.add(`${honeyPos.x},${honeyPos.y}`);
-                candidates.push(honeyPos);
-            }
-            
-            if (adjacent.length === 0 || Math.random() < 0.3) {
-                candidates.splice(candidateIndex, 1);
-            }
-        }
-
-        if (honey.length < count) {
-            throw new Error(`Could only generate ${honey.length} reachable honey positions out of ${count}`);
-        }
-
-        return honey;
-    }
-
-    getAdjacentCells(pos, size) {
-        const adjacent = [];
-        const directions = [
-            { dx: 0, dy: -1 }, { dx: 1, dy: 0 },
-            { dx: 0, dy: 1 }, { dx: -1, dy: 0 }
-        ];
-
-        for (const dir of directions) {
-            const newX = pos.x + dir.dx;
-            const newY = pos.y + dir.dy;
-            
-            if (newX >= 0 && newX < size.width && newY >= 0 && newY < size.height) {
-                adjacent.push({ x: newX, y: newY });
-            }
-        }
-
-        return adjacent;
-    }
-
-    findOptimalPath(bear, honey, size) {
-        const visited = new Set();
         const path = [bear];
-        let current = bear;
-        
-        while (visited.size < honey.length) {
-            let nearest = null;
-            let minDistance = Infinity;
-            
-            for (const h of honey) {
-                const key = `${h.x},${h.y}`;
-                if (!visited.has(key)) {
-                    const distance = Math.abs(current.x - h.x) + Math.abs(current.y - h.y);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        nearest = h;
-                    }
-                }
-            }
-            
-            if (nearest) {
-                const pathSegment = this.findPathAStar(current, nearest, size, []);
-                if (!pathSegment) {
-                    return null;
-                }
-                
-                path.push(...pathSegment.slice(1));
-                visited.add(`${nearest.x},${nearest.y}`);
-                current = nearest;
-            } else {
-                break;
-            }
+        let current = { ...bear };
+
+        for (let i = 0; i < honeyCount; i++) {
+            // Randomly walk from current to place honey
+            const honeyPos = this.randomReachablePosition(current, width, height, path);
+            honey.push(honeyPos);
+
+            // Extend path with simple Manhattan walk
+            const segment = this.manhattanPath(current, honeyPos);
+            path.push(...segment.slice(1)); // skip current
+            current = honeyPos;
         }
-        
-        return visited.size === honey.length ? path : null;
+
+        return { honey, path };
     }
 
-    findPathAStar(start, end, size, obstacles) {
-        const openSet = [start];
-        const cameFrom = new Map();
-        const gScore = new Map();
-        const fScore = new Map();
-        
-        gScore.set(`${start.x},${start.y}`, 0);
-        fScore.set(`${start.x},${start.y}`, this.heuristic(start, end));
-        
-        const obstacleSet = new Set(obstacles.map(o => `${o.x},${o.y}`));
-        
-        while (openSet.length > 0) {
-            let current = openSet[0];
-            let currentIndex = 0;
-            for (let i = 1; i < openSet.length; i++) {
-                const currentKey = `${openSet[i].x},${openSet[i].y}`;
-                const lowestKey = `${current.x},${current.y}`;
-                if ((fScore.get(currentKey) || Infinity) < (fScore.get(lowestKey) || Infinity)) {
-                    current = openSet[i];
-                    currentIndex = i;
-                }
-            }
-            
-            if (current.x === end.x && current.y === end.y) {
-                const path = [];
-                let temp = current;
-                while (temp) {
-                    path.unshift(temp);
-                    temp = cameFrom.get(`${temp.x},${temp.y}`);
-                }
-                return path;
-            }
-            
-            openSet.splice(currentIndex, 1);
-            
-            for (const neighbor of this.getAdjacentCells(current, size)) {
-                const neighborKey = `${neighbor.x},${neighbor.y}`;
-                
-                if (obstacleSet.has(neighborKey)) {
-                    continue;
-                }
-                
-                const tentativeGScore = (gScore.get(`${current.x},${current.y}`) || Infinity) + 1;
-                
-                if (tentativeGScore < (gScore.get(neighborKey) || Infinity)) {
-                    cameFrom.set(neighborKey, current);
-                    gScore.set(neighborKey, tentativeGScore);
-                    fScore.set(neighborKey, tentativeGScore + this.heuristic(neighbor, end));
-                    
-                    if (!openSet.find(n => n.x === neighbor.x && n.y === neighbor.y)) {
-                        openSet.push(neighbor);
-                    }
-                }
-            }
+    randomReachablePosition(start, width, height, path) {
+        let pos;
+        do {
+            pos = {
+                x: Math.floor(Math.random() * width),
+                y: Math.floor(Math.random() * height)
+            };
+        } while (path.some(p => p.x === pos.x && p.y === pos.y)); // avoid duplicates
+        return pos;
+    }
+
+    manhattanPath(start, end) {
+        const path = [{ ...start }];
+        let { x, y } = start;
+
+        while (x !== end.x || y !== end.y) {
+            if (x < end.x) x++;
+            else if (x > end.x) x--;
+            else if (y < end.y) y++;
+            else if (y > end.y) y--;
+            path.push({ x, y });
         }
-        
-        return null;
+
+        return path;
     }
 
-    heuristic(a, b) {
-        return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
-    }
-
-    generateNonBlockingObstacles(bear, honey, size, obstacleRatio, solutionPath) {
-        const obstacles = [];
-        const totalCells = size.width * size.height;
+    generateObstacles(width, height, protectedPath, obstacleRatio) {
+        const totalCells = width * height;
         const maxObstacles = Math.floor(totalCells * obstacleRatio);
-        
-        const protected = new Set();
-        protected.add(`${bear.x},${bear.y}`);
-        honey.forEach(h => protected.add(`${h.x},${h.y}`));
-        
-        solutionPath.forEach(pos => {
-            if (Math.random() < 0.7) {
-                protected.add(`${pos.x},${pos.y}`);
-            }
-        });
-        
-        let attempts = 0;
-        while (obstacles.length < maxObstacles && attempts < maxObstacles * 3) {
-            const x = Math.floor(Math.random() * size.width);
-            const y = Math.floor(Math.random() * size.height);
+        const obstacles = [];
+        const blocked = new Set(protectedPath.map(p => `${p.x},${p.y}`));
+
+        while (obstacles.length < maxObstacles) {
+            const x = Math.floor(Math.random() * width);
+            const y = Math.floor(Math.random() * height);
             const key = `${x},${y}`;
-            
-            if (!protected.has(key) && !obstacles.find(o => o.x === x && o.y === y)) {
-                const testObstacles = [...obstacles, { x, y }];
-                if (this.canReachAllHoney(bear, honey, size, testObstacles)) {
-                    obstacles.push({ x, y });
-                }
+
+            if (!blocked.has(key) && !obstacles.find(o => o.x === x && o.y === y)) {
+                obstacles.push({ x, y });
             }
-            attempts++;
         }
-        
+
         return obstacles;
     }
-
-    canReachAllHoney(bear, honey, size, obstacles) {
-        for (const h of honey) {
-            const path = this.findPathAStar(bear, h, size, obstacles);
-            if (!path) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    validateLevel(level) {
-        if (!level.bear || !level.honey || !level.obstacles) {
-            return false;
-        }
-        
-        if (level.honey.length === 0) {
-            return false;
-        }
-        
-        const isInBounds = (pos) => 
-            pos.x >= 0 && pos.x < level.size.width && 
-            pos.y >= 0 && pos.y < level.size.height;
-        
-        if (!isInBounds(level.bear)) return false;
-        if (!level.honey.every(isInBounds)) return false;
-        if (!level.obstacles.every(isInBounds)) return false;
-        
-        return this.canReachAllHoney(level.bear, level.honey, level.size, level.obstacles);
-    }
-
-    createFallbackLevel(id, theme) {
-        return {
-            id: id,
-            name: theme.name + " (Simple)",
-            description: theme.description,
-            size: { width: 4, height: 4 },
-            maxMoves: 10,
-            bear: { x: 0, y: 0 },
-            honey: [
-                { x: 1, y: 0 },
-                { x: 2, y: 0 },
-                { x: 3, y: 0 }
-            ],
-            obstacles: [
-                { x: 1, y: 1 },
-                { x: 2, y: 2 }
-            ],
-            completionMessage: theme.completionMessage,
-            memoryPhoto: theme.memoryPhoto,
-            isGenerated: true
-        };
-    }
-
 
 }
 
