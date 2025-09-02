@@ -10,7 +10,7 @@ const memoriesData = [
         location: 'Ross-Ade Stadium'
     },
     {
-        id: 1,
+        id: 2,
         date: '2022-09-25',
         title: 'Walks!',
         description: 'After we initially met we started to talk more and go on walks together, like to IM games!',
@@ -20,7 +20,7 @@ const memoriesData = [
         location: 'IM Fields'
     },
     {
-        id: 1,
+        id: 3,
         date: '2022-10-01',
         title: 'Wendys',
         description: 'This is from that time we walked alllll the way to wendys late at night for frostys.',
@@ -30,7 +30,7 @@ const memoriesData = [
         location: 'Wendys'
     },
     {
-        id: 1,
+        id: 4,
         date: '2022-10-04',
         title: 'Sushi',
         description: 'We started getting smart and dumping all our saved meal points into infinite sushi each week.',
@@ -40,7 +40,7 @@ const memoriesData = [
         location: 'Sushi Boss'
     },
     {
-        id: 1,
+        id: 5,
         date: '2022-10-10',
         title: 'Chicago Bean',
         description: 'Our first real date! We stayed near Sam McPherson and explored all of Chicago.',
@@ -50,7 +50,7 @@ const memoriesData = [
         location: 'Chicago Bean'
     },
     {
-        id: 1,
+        id: 6,
         date: '2022-10-30',
         title: 'Perry & Doof',
         description: 'We decided to pull up in style for our first Halloween together, one of my favorite costumes.',
@@ -60,7 +60,7 @@ const memoriesData = [
         location: 'Triangle Function Room'
     },
     {
-        id: 1,
+        id: 7,
         date: '2022-11-11',
         title: 'Birthday',
         description: 'Bear celebrated my birthday with me in my dorm!',
@@ -70,7 +70,7 @@ const memoriesData = [
         location: 'The Moon'
     },
     {
-        id: 1,
+        id: 8,
         date: '2023-03-04',
         title: 'Spring Formal',
         description: 'Another outing for bearkind! And our first formal together out in French Lick.',
@@ -80,7 +80,7 @@ const memoriesData = [
         location: 'French Lick, IN'
     },
     {
-        id: 1,
+        id: 9,
         date: '2023-06-24',
         title: 'Texas Visit',
         description: 'My first trip to Texas! You took me around to all the best places.',
@@ -90,7 +90,7 @@ const memoriesData = [
         location: 'Texas'
     },
     {
-        id: 1,
+        id: 10,
         date: '2023-08-17',
         title: 'Minnesota Visit',
         description: 'You returned the favor and flew to Minnesota towards the end of Summer.',
@@ -100,7 +100,7 @@ const memoriesData = [
         location: 'Minnesota'
     },
     {
-        id: 1,
+        id: 11,
         date: '2023-08-21',
         title: 'First Sophomore Day',
         description: 'Our mandatory first day of school picture for our parents sophomore year.',
@@ -110,7 +110,7 @@ const memoriesData = [
         location: 'Frieda Hall'
     },
     {
-        id: 1,
+        id: 12,
         date: '2023-08-21',
         title: 'Lego Bonsai',
         description: 'Freshly built lego bonsai tree shortly after we moved in.',
@@ -120,7 +120,7 @@ const memoriesData = [
         location: 'Triangle Fraternity'
     },
     {
-        id: 1,
+        id: 13,
         date: '2023-09-16',
         title: 'Happy Family',
         description: 'Mandatory picture including child, with our special family shirts on.',
@@ -130,7 +130,7 @@ const memoriesData = [
         location: 'Triangle Fraternity'
     },
     {
-        id: 1,
+        id: 14,
         date: '2023-09-21',
         title: 'Barn Dance',
         description: 'Our first barn dance together, I got to meet all your Pi Phi friends too!',
@@ -140,7 +140,7 @@ const memoriesData = [
         location: 'Barn in Indiana'
     },
     {
-        id: 1,
+        id: 15,
         date: '2023-10-14',
         title: 'Greek Function',
         description: 'We got all dressed up and looking nice for greek function, just to not even get in.',
@@ -150,7 +150,7 @@ const memoriesData = [
         location: 'Triangle Fraternity'
     },
     {
-        id: 1,
+        id: 16,
         date: '2023-10-17',
         title: 'Movies',
         description: 'One of our first movies together down at Purdue.',
@@ -160,7 +160,7 @@ const memoriesData = [
         location: 'Movie Theater in Lafayette'
     },
     {
-        id: 1,
+        id: 17,
         date: '2023-10-17',
         title: 'Bear Anniversary',
         description: 'Professional pictures for our anniversary!',
@@ -170,7 +170,7 @@ const memoriesData = [
         location: 'West Lafayette, IN'
     },
     {
-        id: 1,
+        id: 18,
         date: '2023-10-25',
         title: 'Bear Family',
         description: 'Family of bears with James!',
@@ -180,7 +180,7 @@ const memoriesData = [
         location: 'Triangle Fraternity'
     },
     {
-        id: 1,
+        id: 19,
         date: '2023-10-28',
         title: 'Evan Art',
         description: 'This was before the Halloween function, you painted on Evans abs.',
@@ -190,7 +190,7 @@ const memoriesData = [
         location: 'Triangle Fraternity'
     },
     {
-        id: 1,
+        id: 20,
         date: '2023-10-28',
         title: 'Sophomore Halloween',
         description: 'Joint costume from Blade Runner!',
@@ -200,7 +200,7 @@ const memoriesData = [
         location: 'Triangle Fraternity'
     },
     {
-        id: 1,
+        id: 21,
         date: '2023-11-04',
         title: 'Michigan',
         description: 'Trip to Michigan to visit Colin.',
@@ -210,7 +210,7 @@ const memoriesData = [
         location: 'Ann Arbor, Michigan'
     },
     {
-        id: 1,
+        id: 22,
         date: '2024-02-11',
         title: 'Poker',
         description: 'Bear playing poker in Room 0.',
@@ -220,7 +220,7 @@ const memoriesData = [
         location: 'Triangle Fraternity'
     },
     {
-        id: 1,
+        id: 23,
         date: '2024-03-22',
         title: 'Pie',
         description: 'A beautiful picture post-pie.',
@@ -230,7 +230,7 @@ const memoriesData = [
         location: 'Pi Beta Phi'
     },
     {
-        id: 1,
+        id: 24,
         date: '2024-06-21',
         title: 'Morgan Wallen',
         description: 'Morgan Wallen concert in MN!',
@@ -240,7 +240,7 @@ const memoriesData = [
         location: 'US Bank Stadium'
     },
     {
-        id: 1,
+        id: 25,
         date: '2024-09-06',
         title: 'Mike.',
         description: 'Mike. concert in Chicago!',
@@ -250,7 +250,7 @@ const memoriesData = [
         location: 'Chicago'
     },
     {
-        id: 1,
+        id: 26,
         date: '2024-10-05',
         title: 'Canada Formal',
         description: 'Fall formal in Windsor at Caesars Palace.',
@@ -260,7 +260,7 @@ const memoriesData = [
         location: 'Windsor, Ontario'
     },
     {
-        id: 1,
+        id: 27,
         date: '2024-10-26',
         title: 'Snoop Dogg',
         description: 'One of our best costumes, Snoop Dogg and his joint roller.',
@@ -270,7 +270,7 @@ const memoriesData = [
         location: 'Triangle Fraternity'
     },
     {
-        id: 1,
+        id: 28,
         date: '2025-03-16',
         title: 'Spring Break Junior',
         description: 'Makeshift bed at Jacobs house in Chicago.',
@@ -280,7 +280,7 @@ const memoriesData = [
         location: 'Glenview, IL'
     },
     {
-        id: 1,
+        id: 29,
         date: '2025-03-20',
         title: 'Bar Rescue',
         description: 'Dr. Philgoods bar featured on Bar Rescue in Florida.',
@@ -290,7 +290,7 @@ const memoriesData = [
         location: 'Dr. Philgoods in Florida'
     },
     {
-        id: 1,
+        id: 30,
         date: '2025-05-18',
         title: 'Graduate',
         description: 'You graduated!!!',
@@ -300,7 +300,7 @@ const memoriesData = [
         location: 'Purdue University'
     },
     {
-        id: 1,
+        id: 31,
         date: '2025-06-16',
         title: 'Puttery',
         description: 'Mini golf at the Puttery in North Loop.',
@@ -310,7 +310,7 @@ const memoriesData = [
         location: 'Minneapolis, MN'
     },
     {
-        id: 1,
+        id: 32,
         date: '2025-08-10',
         title: 'Janice',
         description: 'Our cutest child.',
