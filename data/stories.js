@@ -29,42 +29,89 @@ const dateQuestions = [
     },
     {
         id: "drink_type",
-        text: "What kind of drinks?",
+        text: "What are you in the mood for?",
         dependsOn: { questionId: "out_activity", value: "drink" },
         options: [
             { text: "Coffee", value: "coffee" },
             { text: "Cocktails", value: "cocktails" },
-            { text: "Tea", value: "tea" }
+            { text: "Food", value: "food" }
         ]
     },
     {
-        id: ,
-        text: ,
-        dependsOn: ,
-        options: []
+        id: "activity_type",
+        text: "What activity sounds fun?",
+        dependsOn: { questionId: "out_activity", value: "activity" },
+        options: [
+            { text: "Sports (e.g. bowling, mini-golf)", value: "sports" },
+            { text: "Creative (e.g. painting, pottery)", value: "creative" },
+            { text: "Music/Dance (e.g. concert)", value: "music" }
+        ]
     },
     {
-        id: ,
-        text: ,
-        dependsOn: ,
-        options: []
+        id: "explore_type",
+        text: "What kind of exploration?",
+        dependsOn: { questionId: "out_activity", value: "explore" },
+        options: [
+            { text: "Walk", value: "walk"},
+            { text: "Find new bars/cafes", value: "bars"},
+            { text: "Hike", value: "hike"}
+        ]
     },
     {
-        id: ,
-        text: ,
-        dependsOn: ,
-        options: []
+        id: "movies_type",
+        text: "What kind of TV shows or movies?",
+        dependsOn: { questionId: "stay_activity", value: "movies" },
+        options: [
+            { text: "Lighthearted (iasip, south park)", value: "lighthearted" },
+            { text: "New shows", value: "new" },
+            { text: "Horror/Action movie", value: "horror" }
+        ]
     },
     {
-        id: ,
-        text: ,
-        dependsOn: ,
-        options: []
+        id: "cook_type",
+        text: "What should we cook?",
+        dependsOn: { questionId: "stay_activity", value: "cook" },
+        options: [
+            { text: "Bake something sweet", value: "bake" },
+            { text: "Make a fancy dinner", value: "fancy" },
+            { text: "Try a new recipe", value: "newRec" }
+        ]
     },
     {
-        id: ,
-        text: ,
-        dependsOn: ,
-        options: []
+        id: "games_type",
+        text: "What games should we play?",
+        dependsOn: { questionId: "stay_activity", value: "games" },
+        options: [
+            { text: "Phone games (auto pets, gamepigeon)", value: "phone"},
+            { text: "Computer games (stardew, minecraft)", value: "computer"},
+            { text: "Board games (monopoly, etc.)", value: "board"}
+        ]
     },
 ];
+
+const activitySuggestions = {
+    sports: [
+        "Go to a vikings game",
+        "Topgolf",
+        "Bowling",
+        "Mini-golf",
+        "Paddleboarding"
+    ],
+    creative: [],
+    music: [],
+    walk:[],
+    bars: [],
+    hike: [],
+    coffee: [],
+    cocktails: [],
+    food: [],
+    lighthearted: [],
+    new: [],
+    horror: [],
+    bake: [],
+    fancy: [],
+    newRec: [],
+    phone: [],
+    computer: [],
+    board: []
+}
