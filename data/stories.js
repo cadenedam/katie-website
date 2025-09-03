@@ -97,21 +97,109 @@ const activitySuggestions = {
         "Mini-golf",
         "Paddleboarding"
     ],
-    creative: [],
-    music: [],
-    walk:[],
-    bars: [],
-    hike: [],
-    coffee: [],
-    cocktails: [],
-    food: [],
-    lighthearted: [],
-    new: [],
-    horror: [],
-    bake: [],
-    fancy: [],
-    newRec: [],
-    phone: [],
-    computer: [],
-    board: []
+    creative: [
+        "Pottery class",
+        "Painting & Sip",
+        "Escape room",
+        "Museum visit"
+    ],
+    music: [
+        "Live concert",
+        "Karaoke night",
+        "Jazz club",
+        "Live band at a bar"
+    ],
+    walk:[
+        "Walk to Pryes",
+        "Walk around a lake",
+        "Walk with Janice",
+        "Walk somewhere new"
+    ],
+    bars: [
+        "Cuzzy's",
+        "Whitey's Old Town Saloon",
+        "Maison Margaux",
+        "FRGMNT Coffee",
+        "Fairgrounds Coffee"
+    ],
+    hike: [
+        "Minnehaha Falls",
+        "Fort Snelling",
+        "Bde Maka Ska Loop",
+        "Lake Nokomis"
+    ],
+    coffee: [
+        "FRGMNT Coffee",
+        "Fairgrounds Coffee",
+        "In The Loop",
+        "Spyhouse Coffee"
+    ],
+    cocktails: [
+        "Cobble Social House",
+        "Flora Room",
+        "BERLIN",
+        "Hewing Rooftop"
+    ],
+    food: [
+        "The Loop",
+        "Graze Food Hall",
+        "112 Eatery",
+        "Porzana"
+    ],
+    lighthearted: [
+        "It's Always Sunny in Philadelphia",
+        "South Park",
+        "Arrested Development",
+        "Community"
+    ],
+    new: [
+        "Murderbot",
+        "Prime Target",
+        "Task",
+        "Adolescence",
+        "The Hunting Party"
+    ],
+    horror: [
+        "It follows",
+        "The Witch",
+        "Oldboy",
+        "The Invisible Man"
+    ],
+    bake: [
+        "Chocolate chip cookies",
+        "Brownies",
+        "Cupcakes",
+        "Cake pops"
+    ],
+    fancy: [
+        "Mushroom risotto",
+        "Lobster ravioli",
+        "Seared Salmon",
+        "Creme Brulee"
+    ],
+    newRec: [
+        "Detroit-Style pan pizza",
+        "Stuffed pretzel bites",
+        "Sushi",
+        "Mochi ice cream"
+    ],
+    phone: [
+        "Super Auto Pets",
+        "GamePigeon",
+        "Roblox",
+        "Stardew Valley"
+    ],
+    computer: [
+        "Stardew Valley",
+        "Minecraft",
+        "Keep Talking and Nobody Explodes",
+        "We Were Here",
+        "It Takes Two"
+    ],
+    board: [
+        "Monopoly",
+        "Chess",
+        "Sushi Go!",
+        "Hive"
+    ]
 }

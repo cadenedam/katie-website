@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Love ❤️</title>
+    <title>For My Bear</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/timeline.css">
     <link rel="stylesheet" href="css/honeyPath.css">
     <link rel="stylesheet" href="css/adventure.css">
+    <link rel="stylesheet" href="css/hunt.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <h1 class="nav-title">Our Love Story</h1>
+            <h1 class="nav-title">Bear Inc.</h1>
             <div class="nav-menu">
                 <a href="#timeline" class="nav-link">Timeline</a>
                 <a href="#adventure" class="nav-link">Adventures</a>
                 <a href="#games" class="nav-link">Games</a>
-                <a href="#letters" class="nav-link">Letters</a>
                 <a href="#hunt" class="nav-link">Hunt</a>
             </div>
         </div>
@@ -27,28 +27,35 @@
 
     <main class="main-content">
         <section id="timeline" class="section">
-            <h2>Our Memory Lane</h2>
+            <h2>History of Beardom</h2>
             <div id="timeline-container"></div>
         </section>
 
         <section id="adventure" class="section">
-            <h2>Virtual Date Adventures</h2>
+            <h2>Date Builder</h2>
             <div id="adventure-container"></div>
         </section>
 
         <section id="games" class="section">
-            <h2>Our Games</h2>
+            <h2>Bear Game</h2>
             <div id="games-container"></div>
         </section>
 
-        <section id="letters" class="section">
-            <h2>Love Letter Generator</h2>
-            <div id="letters-container"></div>
-        </section>
-
         <section id="hunt" class="section">
-            <h2>Treasure Hunt</h2>
-            <div id="hunt-container"></div>
+            <h2>Bear Guesser</h2>
+            <div id="hunt-container">
+                <h2>Guess the date and location!</h2>
+                <img id="photo" src="" alt="Memory Photo" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                
+                <div>
+                    <input id="dateInput" placeholder="When was this? (YYYY-MM)">
+                    <input id="locationInput" placeholder="Where was this?">
+                    <input id="feedback" placeholder="What do you think of this image?">
+                </div>
+
+                <button onclick="checkAnswers()">Submit Guess</button>
+                <button onclick="endGame()">End Game</button>
+            </div>
         </section>
     </main>
 
@@ -56,6 +63,7 @@
     <script src="data/memories.js"></script>
     <script src="data/stories.js"></script>
     <script src="data/letters.js"></script>
+    <script src="data/hunt.js"></script>
     <script src="js/timeline.js"></script>
     <script src="js/adventure.js"></script>
     <script src="js/honeyPath.js"></script>

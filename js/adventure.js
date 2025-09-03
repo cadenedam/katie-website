@@ -16,7 +16,7 @@ const activityPriority = {
     horror: 3,
     bake: 3,
     fancy: 2,
-    new: 2,
+    newRec: 2, // Fixed duplicate "new" key
     phone: 3,
     computer: 3,
     board: 3
@@ -74,12 +74,77 @@ function renderDatePlan() {
         (a, b) => (activityPriority[a] || 99) - (activityPriority[b] || 99)
     );
 
+    const activityIcons = {
+        sports: "🏈",
+        creative: "🎨", 
+        music: "🎵",
+        walk: "🚶‍♂️",
+        bars: "🍺",
+        hike: "🥾",
+        coffee: "☕",
+        cocktails: "🍸",
+        food: "🍽️",
+        lighthearted: "😄",
+        new: "🆕",
+        horror: "👻",
+        bake: "🧁",
+        fancy: "🥂",
+        newRec: "✨",
+        phone: "📱",
+        computer: "💻",
+        board: "🎲"
+    };
+
+    const activityTimes = {
+        sports: "Afternoon",
+        creative: "Evening", 
+        music: "Night",
+        walk: "Sunset",
+        bars: "Evening",
+        hike: "Morning",
+        coffee: "Morning",
+        cocktails: "Night",
+        food: "Evening",
+        lighthearted: "Evening",
+        new: "Evening",
+        horror: "Night",
+        bake: "Afternoon",
+        fancy: "Evening",
+        newRec: "Lunch",
+        phone: "Anytime",
+        computer: "Evening",
+        board: "Evening"
+    };
+
     adventureContainer.innerHTML = `
-        <h3>Your Perfect Date Plan ❤️</h3>
-        <ol>
-            ${sorted.map(act => `<li>${act}</li>`).join("")}
-        </ol>
-        <button class="adventure-btn" id="restartBtn">Plan Another Date</button>
+        <div class="date-plan-container">
+            <h3 class="date-plan-title">Your Perfect Bear Date Adventure ❤️🐻</h3>
+            <ul class="order-container">
+                ${sorted.map((activity, index) => `
+                    <li class="order-item">
+                        <div class="order-step">
+                            <div class="step-number">${index + 1}</div>
+                            <div class="time-badge">${activityTimes[activity] || 'Anytime'}</div>
+                            
+                            <div class="activity-wrapper">
+                                <div class="activity-icon">${activityIcons[activity] || '🎯'}</div>
+                                <strong>${activity}</strong>
+
+                                ${activitySuggestions[activity] ? `
+                                    <div class="tooltip">
+                                        <div style="font-weight: bold; margin-bottom: 8px; color: #8B4513;">💡 Suggestions:</div>
+                                        ${activitySuggestions[activity].map(s => `<p>• ${s}</p>`).join("")}
+                                    </div>
+                                ` : ""}
+                            </div>
+                        </div>
+                    </li>
+                `).join("")}
+            </ul>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="adventure-btn" id="restartBtn">🐻 Plan Another Bear Date</button>
+            </div>
+        </div>
     `;
 
     document.getElementById("restartBtn").addEventListener("click", () => {
